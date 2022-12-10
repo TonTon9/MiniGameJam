@@ -28,11 +28,12 @@ public class FirstPersonCamera {
 
     private void RotateCameraByY() {
         _mouseX = Input.GetAxis("Mouse Y");
+        Debug.Log(_cameraTransform.localRotation.eulerAngles.x);
         if (_cameraTransform.localRotation.eulerAngles.x < 273 && _cameraTransform.localRotation.eulerAngles.x > 250)
         {            
             _mouseX = Mathf.Clamp(_mouseX, -1, 0);
         }
-        if (_cameraTransform.localRotation.eulerAngles.x > 75 && _cameraTransform.localRotation.eulerAngles.x < 100)
+        if (_cameraTransform.localRotation.eulerAngles.x > 39 && _cameraTransform.localRotation.eulerAngles.x < 100)
         {            
             _mouseX = Mathf.Clamp(_mouseX, 0, 1);
         }        

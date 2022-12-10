@@ -7,8 +7,19 @@ public class PlayerAnimations {
     public PlayerAnimations(Animator animator) {
         _animator = animator;
     }
+
+    public void ChangeProfile(Animator animator) {
+        _animator = animator;
+    }
     
-    public void SetWalkSpeed(float verticalSpeed ,float horizontalSpeed ) {
-        _animator.SetFloat("Speed", verticalSpeed);
+    public void SetWalkSpeed(float speed) {
+        _animator.SetFloat("Speed", speed);
+    }
+
+    public void PlayAttackAnimation() {
+        _animator.CrossFade("Attack", 0.2f);
+    }
+    public void PlayAttackAnimation2() {
+        _animator.CrossFade("Attack2", 0.2f);
     }
 }
