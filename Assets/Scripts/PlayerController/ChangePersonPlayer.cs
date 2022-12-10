@@ -12,6 +12,9 @@ public class ChangePersonPlayer : MonoBehaviour {
     [SerializeField]
     private PostProcessVolume _postProcessVolume;
 
+    [SerializeField]
+    private AngryFaceAppear _angryFaceAppear;
+
     private PlayerAnimations _playerAnimations;
     private UnitStat _stat;
     private bool _isAngry;
@@ -43,7 +46,6 @@ public class ChangePersonPlayer : MonoBehaviour {
                 _chromaticAberrationUp = false;
                 return;
             }
-            Debug.Log("+");
             _lensDistortion.intensity.value += 20f * Time.deltaTime;
             _chromaticAberration.intensity.value += 4 * Time.deltaTime;
             
@@ -53,7 +55,6 @@ public class ChangePersonPlayer : MonoBehaviour {
                 _chromaticAberrationUp = true;
                 return;
             }
-            Debug.Log("-");
             _lensDistortion.intensity.value -= 10f * Time.deltaTime;
             _chromaticAberration.intensity.value -= 2 * Time.deltaTime;
         }
@@ -66,6 +67,7 @@ public class ChangePersonPlayer : MonoBehaviour {
             _angryProfile.model.SetActive(false);
             ChangeProfileStats(_peacefullProfile);
         } else {
+            _angryFaceAppear.ShowAngryFace();
             _peacefullProfile.model.SetActive(false);
             _angryProfile.model.SetActive(true);
             ChangeProfileStats(_angryProfile);

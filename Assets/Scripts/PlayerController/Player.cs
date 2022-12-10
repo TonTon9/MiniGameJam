@@ -14,10 +14,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private HealthUnit _healthUnit;
-
-    [SerializeField]
-    private GameObject _trails;
-
+    
     private CharacterController _characterController;
     private FirstPersonCamera _firstPersonCamera;
     private PlayerAnimations _playerAnimations;
