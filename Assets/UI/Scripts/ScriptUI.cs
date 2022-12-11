@@ -18,6 +18,7 @@ public class ScriptUI : MonoBehaviour
     [SerializeField] private Image ragemodeBar;
     [Header("Other Settings")]
     [SerializeField] private TextMeshProUGUI amountKills;
+    [SerializeField] private TextMeshProUGUI amountKillsInPause;
 
     [Header("DeadUI")]
     [SerializeField] private GameObject deadPanel;
@@ -51,6 +52,7 @@ public class ScriptUI : MonoBehaviour
     {
         amountKills.text = "Kills: " + currentKills;
     }
+    
     public void StaminaBar()
     {
         staminaBar.fillAmount = (float) currentStamina / maxStamina;

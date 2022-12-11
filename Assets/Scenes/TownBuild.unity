@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -973,6 +973,7 @@ GameObject:
   - component: {fileID: 1578414809}
   - component: {fileID: 1578414806}
   - component: {fileID: 1578414805}
+  - component: {fileID: 1578414810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -992,9 +993,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b40e1e11c89af4438acec1f8b2cad0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
   _mouseSens: 4
   _playerAnimator: {fileID: 1356802024}
+  _stat:
+    _health:
+      <type>k__BackingField: 0
+      <startValue>k__BackingField: 0
+      <currentValue>k__BackingField: 0
+    _damage:
+      <type>k__BackingField: 0
+      <startValue>k__BackingField: 0
+      <currentValue>k__BackingField: 0
+    _attackSpeed:
+      <type>k__BackingField: 0
+      <startValue>k__BackingField: 0
+      <currentValue>k__BackingField: 0
+    _attackRange:
+      <type>k__BackingField: 0
+      <startValue>k__BackingField: 0
+      <currentValue>k__BackingField: 0
+    _moveSpeed:
+      <type>k__BackingField: 0
+      <startValue>k__BackingField: 0
+      <currentValue>k__BackingField: 0
+  _healthUnit: {fileID: 0}
+  _cameraHolderTransform: {fileID: 0}
+  _attack: {fileID: 0}
 --- !u!143 &1578414806
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1030,6 +1054,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1578414810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578414804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede1fd76adce21246a4c1c6d5c690849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _peacefullProfile:
+    <postProcessProfile>k__BackingField: {fileID: 0}
+    <model>k__BackingField: {fileID: 0}
+    <animator>k__BackingField: {fileID: 0}
+    <moveSpeed>k__BackingField: 0
+  _angryProfile:
+    <postProcessProfile>k__BackingField: {fileID: 0}
+    <model>k__BackingField: {fileID: 0}
+    <animator>k__BackingField: {fileID: 0}
+    <moveSpeed>k__BackingField: 0
+  _postProcessVolume: {fileID: 0}
+  _angryFaceAppear: {fileID: 0}
+  _angrySound: {fileID: 0}
+  _peacefullSound: {fileID: 0}
+  _peaceSkyBox: {fileID: 0}
+  _anrgySkyBox: {fileID: 0}
 --- !u!1 &1656449619
 GameObject:
   m_ObjectHideFlags: 0
