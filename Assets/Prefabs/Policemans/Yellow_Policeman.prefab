@@ -306,7 +306,7 @@ MonoBehaviour:
       <currentValue>k__BackingField: 0
     _attackSpeed:
       <type>k__BackingField: 2
-      <startValue>k__BackingField: 10
+      <startValue>k__BackingField: 7
       <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackRange:
