@@ -25,7 +25,7 @@ public class HealthUnit : MonoBehaviour
     
     public void Init(Stat health) {
         _health = health;
-        _healthDisplay.Init(this, _health.currentValue, _health.startValue);
+        _healthDisplay.Init(this, _health.currentValue, _health.maxValue);
     }
     
     public void TakeDamage(float damage, DamageType damageType) {
@@ -38,7 +38,7 @@ public class HealthUnit : MonoBehaviour
 
         _bloodGameObject = Instantiate(_bloodVfx, _bodyPoint.position, _bodyPoint.rotation);
         Destroy(_bloodGameObject, 1f);
-        OnHealthChange?.Invoke(_health.currentValue, _health.startValue);
+        OnHealthChange?.Invoke(_health.currentValue, _health.maxValue);
         
     }
 }

@@ -1,14 +1,18 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScriptUI : MonoBehaviour
+public class GameHud : MonoBehaviour
 {
+    private const float updateSpeedSec = 0.25f;
+    private const float updateLeftSpeedSec = 0.5f;
+    
     [Header("Left Up Settings")]
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI staminaText;
-    // [SerializeField] private TextMeshProUGUI a;
+    
     [SerializeField] private TextMeshProUGUI killResultText;
     [SerializeField] private Image spritePortriet;
     [SerializeField] private Image healthBar;
@@ -23,28 +27,50 @@ public class ScriptUI : MonoBehaviour
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject gamePanelUI;
     
-    private static float currentHealth;
     private static float currentStamina;
     private int currentKills;
-    private float maxHealth = 100;
     private float maxStamina = 100;
     private bool isEvil;
+    private float currentValuePct;
 
+    private void Awake() {
+        Citizen.OnDie += KillCitizen;
+    }
+
+    public void UpdateHealth(float currentHealth ,float maxHealth)
+    {
+        currentValuePct = currentHealth / maxHealth;
+        healthText.text = $"{currentHealth.ToString()}%";
+        StartCoroutine(ChangeToPct(currentValuePct));
+        // healthBar.fillAmount = currentHealth / maxHealth;
+        // healthText.text = "" + currentHealth + "%";
+    }
+    
+    private IEnumerator ChangeToPct(float pct) {
+        float preChangedPct = healthBar.fillAmount;
+        float elapsed = 0f;
+        while (elapsed < updateSpeedSec) {
+            
+            elapsed += Time.deltaTime;
+            healthBar.fillAmount = Mathf.Lerp(preChangedPct, pct, elapsed / updateSpeedSec);
+            
+            //_healthBurImage.color = _colorGradient.Evaluate(_healthBurImage.fillAmount);
+            yield return null;
+        }
+        healthBar.fillAmount = pct;
+    }
+    
+    
     private void Start()
     {
-        currentHealth = maxHealth;
         currentStamina = maxStamina;
         currentKills = 0;
     }
 
     private void Update()
     {
-        HealthBar();
         StaminaBar();
         Murder();
-        SwapPortriet();
-        Test();
-        CheckDead();
     }
 
     private void Murder()
@@ -57,87 +83,40 @@ public class ScriptUI : MonoBehaviour
         staminaText.text = "" + currentStamina + "%";
     }
 
-    public void HealthBar()
-    {
-        healthBar.fillAmount = (float) currentHealth / maxHealth;
-        healthText.text = "" + currentHealth + "%";
-    }
-
-    public void TakeDamage(float _damageCount)
-    {
-        if(currentHealth > 0)
-        currentHealth -= _damageCount;
-    }
     public void Ragemode(float _timeRagemode, float maxTimeRagemode)
     {
         ragemodeBar.fillAmount = (float) _timeRagemode / maxTimeRagemode;
     }
     
-    public void TakeKill(int _kill)
-    {
-        currentKills += _kill;
-        ResultGame(currentKills);
+    public void KillCitizen() {
+        currentKills++;
+        killResultText.text = "Kills:         " + currentKills;
     }
     public void TakeStamina(float _stamina)
     {
         currentStamina -= _stamina;
     }
-    public void SwapPortriet()
+    public void SwapPortrait()
     {
-        if (isEvil)
+        if (!isEvil)
         {
             spritePortriet.sprite = isEvilBoySprite;
+            isEvil = true;
         }
         else
         {
             spritePortriet.sprite = isGoodBoySprite;
-        }
-    }
-
-    public void CheckDead()
-    {
-        if (currentHealth <= 0)
-        {
-            gamePanelUI.SetActive(false);
-            deadPanel.SetActive(true);
-            Time.timeScale = 0;
-        }
-    }
-
-    public void ResultGame(int resultKill)
-    {
-        killResultText.text = "Kills:         " + resultKill;
-    }
-
-    public float a;
-    public void Test()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            TakeDamage(10);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q) && !isEvil)
-        {
-            isEvil = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A) && isEvil)
-        {
             isEvil = false;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            TakeKill(1);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            TakeStamina(2);
-        }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            a -= 1f;
-            Ragemode(a, 100);
-        }
+    }
+
+    public void ShowDeadScreen() {
+        gamePanelUI.SetActive(false);
+        deadPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    
+    private void OnDestroy() {
+        Citizen.OnDie -= KillCitizen;
     }
 }

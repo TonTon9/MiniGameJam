@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 28.836435
+    value: 30.61868
   intensityX:
     overrideState: 0
     value: 1
@@ -56,7 +56,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.580621
+    value: 0.93707925
   fastMode:
     overrideState: 1
     value: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
     value: 0.377
   smoothness:
     overrideState: 1
-    value: 0.2
+    value: 0.531
   roundness:
     overrideState: 0
     value: 1
@@ -162,10 +162,10 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   intensity:
-    overrideState: 1
+    overrideState: 0
     value: 1
   threshold:
-    overrideState: 1
+    overrideState: 0
     value: 1
   softKnee:
     overrideState: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   tonemapper:
-    overrideState: 0
+    overrideState: 1
     value: 0
   toneCurveToeStrength:
     overrideState: 0
