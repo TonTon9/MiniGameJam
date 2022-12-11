@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(HealthUnit))]
-public abstract class Citizen : MonoBehaviour{
+public abstract class Citizen : MonoBehaviour {
+    public static event Action OnDie;
+    
     [SerializeField]
     protected List<Transform> _movePoint;
     
@@ -36,6 +39,7 @@ public abstract class Citizen : MonoBehaviour{
     }
 
     private void Die(DamageType damageType) {
+        OnDie?.Invoke();
         if (damageType == DamageType.Crit) {
             _citizenAnimation.PlayCoolDeadAnimation(); 
         } else {

@@ -33,11 +33,13 @@ public class ChangePersonPlayer : MonoBehaviour {
 
     private ChromaticAberration _chromaticAberration;
     private LensDistortion _lensDistortion;
+    private GameHud _gameHud;
     private bool _chromaticAberrationUp;
 
-    public void Init(PlayerAnimations playerAnimations, UnitStat stat) {
+    public void Init(PlayerAnimations playerAnimations, UnitStat stat, GameHud gameHud) {
         _playerAnimations = playerAnimations;
         _stat = stat;
+        _gameHud = gameHud;
         _chromaticAberration = _angryProfile.postProcessProfile.GetSetting<ChromaticAberration>();
         _lensDistortion = _angryProfile.postProcessProfile.GetSetting<LensDistortion>();
     }
@@ -73,6 +75,7 @@ public class ChangePersonPlayer : MonoBehaviour {
     }
 
     private void ChangeProfile() {
+        _gameHud.SwapPortrait();
         if (_isAngry) {
             RenderSettings.skybox = _peaceSkyBox;
             _peacefullSound.Play();

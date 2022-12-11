@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 7220014495435782497}
   - component: {fileID: 7383097992187285421}
   - component: {fileID: 6740675028847771218}
-  - component: {fileID: 9111051221520091264}
   m_Layer: 0
   m_Name: house_big_1_potted_tree_2
   m_TagString: Untagged
@@ -184,19 +183,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9111051221520091264
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060392891781143341}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60302943, y: 1.317637, z: 0.5735164}
-  m_Center: {x: 0.000000059604645, y: 0.6588185, z: 0}
 --- !u!1 &4581283628537094934
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +291,6 @@ GameObject:
   - component: {fileID: 8006663775356682984}
   - component: {fileID: 785198880890919789}
   - component: {fileID: 5066583100725141736}
-  - component: {fileID: 5232934739625418483}
   m_Layer: 0
   m_Name: house_big_1_potted_tree_1
   m_TagString: Untagged
@@ -378,16 +363,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5232934739625418483
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6624821007512477324}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60302943, y: 1.317637, z: 0.5735164}
-  m_Center: {x: 0.000000059604645, y: 0.6588185, z: 0}

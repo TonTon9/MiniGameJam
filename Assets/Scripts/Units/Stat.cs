@@ -12,15 +12,22 @@ public class Stat {
     public float startValue { get; private set; }
     
     [field: SerializeField]
+    public float maxValue { get; private set; }
+    
+    [field: SerializeField]
     public float currentValue { get; private set; }
 
     public void SetValue(float value) {
         currentValue = value;
+        if (currentValue > maxValue) {
+            currentValue = maxValue;
+        }
         OnChangeValue?.Invoke(currentValue);
     }
 
     public Stat InitStat() {
         currentValue = startValue;
+        maxValue = startValue;
         return this;
     }
 }

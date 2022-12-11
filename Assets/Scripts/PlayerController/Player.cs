@@ -21,6 +21,9 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private SimpleMeleeAttack _attack;
+
+    [SerializeField]
+    private GameHud _gameHud;
     
     private CharacterController _characterController;
     private FirstPersonCamera _firstPersonCamera;
@@ -41,7 +44,8 @@ public class Player : MonoBehaviour {
         _firstPersonCamera = new FirstPersonCamera(Camera.main.transform, transform,_cameraHolderTransform, _mouseSens);
         _healthUnit.Init(_stat.GetStatByType(StatsType.Health));
         _healthUnit.OnDie += Die;
-        _changePersonPlayer.Init(_playerAnimations,_stat);
+        _healthUnit.OnHealthChange += _gameHud.UpdateHealth;
+        _changePersonPlayer.Init(_playerAnimations,_stat, _gameHud);
     }
 
     private void Update() {
