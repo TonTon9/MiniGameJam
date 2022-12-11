@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameHud : MonoBehaviour
@@ -13,13 +14,11 @@ public class GameHud : MonoBehaviour
     
     [Header("Left Up Settings")]
     [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI staminaText;
-    
+
     [SerializeField] private TextMeshProUGUI killResultText;
     [SerializeField] private Image spritePortriet;
     [SerializeField] private Image healthBar;
     [SerializeField] private Image healthBarLeft;
-    [SerializeField] private Image staminaBar;
     [SerializeField] private Sprite isGoodBoySprite;
     [SerializeField] private Sprite isEvilBoySprite;
     [SerializeField] private Image ragemodeBar;
@@ -32,8 +31,11 @@ public class GameHud : MonoBehaviour
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject gamePanelUI;
 
+    [FormerlySerializedAs("_RELOADtIME")] [SerializeField]
+    private TextMeshProUGUI _reloadTime;
+
     [SerializeField]
-    private TextMeshProUGUI _RELOADtIME;
+    private Image _timeToRageFormReady;
     
     private static float currentStamina;
     private int currentKills;
@@ -59,6 +61,8 @@ public class GameHud : MonoBehaviour
         }
         rageTimeLeft.text = Math.Round(time).ToString();
     }
+    
+    
 
     public async void UpdateHealth(float currentHealth ,float maxHealth)
     {
@@ -70,8 +74,25 @@ public class GameHud : MonoBehaviour
     }
 
     public void UpdateReloadTimeLeft(float currentTime ,float maxTime) {
-        _RELOADtIME.text = Math.Round(currentTime).ToString();
-        //staminaBar.fillAmount = currentTime / maxTime;
+        string time = Math.Round(currentTime, 2).ToString();
+        if (currentTime > 10) {
+            
+        }
+        if (currentTime < 10) {
+            if (time.Length == 1) {
+                time = $"{time},00";
+            }
+            if (time.Length == 3) {
+                time = $"{time}0";
+            }
+        }
+        
+        _reloadTime.text = time;
+        _timeToRageFormReady.fillAmount = currentTime / maxTime;
+    }
+    
+    public void ReadyForAngry() {
+        _reloadTime.text = "ready";
     }
     
     private IEnumerator ChangeToPct(float pct) {
@@ -111,7 +132,7 @@ public class GameHud : MonoBehaviour
 
     private void Update()
     {
-        StaminaBar();
+        //StaminaBar();
         Murder();
     }
 
@@ -119,11 +140,11 @@ public class GameHud : MonoBehaviour
     {
         amountKills.text = "Kills: " + currentKills;
     }
-    public void StaminaBar()
-    {
-        staminaBar.fillAmount = (float) currentStamina / maxStamina;
-        staminaText.text = "" + currentStamina + "%";
-    }
+    // public void StaminaBar()
+    // {
+    //     staminaBar.fillAmount = (float) currentStamina / maxStamina;
+    //     staminaText.text = "" + currentStamina + "%";
+    // }
 
     public void Ragemode(float _timeRagemode, float maxTimeRagemode)
     {

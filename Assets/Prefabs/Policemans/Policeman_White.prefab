@@ -306,7 +306,7 @@ MonoBehaviour:
       <currentValue>k__BackingField: 0
     _attackSpeed:
       <type>k__BackingField: 2
-      <startValue>k__BackingField: 10
+      <startValue>k__BackingField: 7
       <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackRange:
@@ -316,7 +316,7 @@ MonoBehaviour:
       <currentValue>k__BackingField: 0
     _moveSpeed:
       <type>k__BackingField: 4
-      <startValue>k__BackingField: 1.7
+      <startValue>k__BackingField: 2
       <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
   _policemanAttack: {fileID: 3111518111904153302}
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1afd89a3074942bd8565a107460d8941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 1.3
   _attackPoint: {fileID: 6033007652377930601}
   _targetLayer:
     serializedVersion: 2

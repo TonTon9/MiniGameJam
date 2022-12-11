@@ -7,6 +7,12 @@ public class TraficManager : MonoBehaviour
     [SerializeField] private Transform[] traficPoints;
     [SerializeField] private GameObject car;
 
+    [SerializeField]
+    private int one;
+
+    [SerializeField]
+    private int two;
+
     private void Start()
     {
         StartCoroutine(TraficDelay());
@@ -24,7 +30,7 @@ public class TraficManager : MonoBehaviour
         while (true)
         {
             int point = GetRandomPoint();
-            SpawnTrafic(point, point+2);
+            SpawnTrafic(point, point+two);
             yield return new WaitForSeconds(Random.Range(3, 5));
             
         }
@@ -33,7 +39,7 @@ public class TraficManager : MonoBehaviour
 
     private int GetRandomPoint()
     {
-        return Random.Range(0, 2);
+        return Random.Range(0, one);
     }
     
 }
