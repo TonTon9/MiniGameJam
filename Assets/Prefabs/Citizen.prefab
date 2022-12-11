@@ -970,14 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea01d19246e458896dfafa7db9cb419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _movePoint: []
   _citizenAnimator: {fileID: 3446035144348088475}
   _stat:
     _health:
