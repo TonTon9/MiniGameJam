@@ -75,22 +75,23 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R) && _reloadRageFormTimeLeft >= _reloadRageFormBase && !_changePersonPlayer._isAngry) {
             ChangeProfileToRage();
         }
-        if (_changePersonPlayer._isAngry) {
-            RageFormLeft();
-        } else {
-            if (_reloadRageFormTimeLeft > _reloadRageFormBase) {
-                _reloadRageFormTimeLeft = _reloadRageFormBase;
-                return;
-            }
-            _reloadRageFormTimeLeft += Time.deltaTime;
-            Debug.Log(_reloadRageFormTimeLeft);
-            _gameHud.UpdateReloadTimeLeft(_reloadRageFormTimeLeft, _reloadRageFormBase);
-        }
-        
+
 
         _firstPersonCamera.RotateCamera();
         _movement.Move();
         _playerAnimations.SetWalkSpeed(_movement.GetSpeed());
+        
+        if (_changePersonPlayer._isAngry) {
+            RageFormLeft();
+        } else {
+            if (_reloadRageFormTimeLeft >= _reloadRageFormBase) {
+                _reloadRageFormTimeLeft = _reloadRageFormBase;
+                _gameHud.ReadyForAngry();
+                return;
+            }
+            _reloadRageFormTimeLeft += Time.deltaTime;
+            _gameHud.UpdateReloadTimeLeft(_reloadRageFormTimeLeft, _reloadRageFormBase);
+        }
     }
 
 
