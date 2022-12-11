@@ -1,7 +1,12 @@
+using System;
 using UnityEngine;
 
 public class SimpleMeleeAttack : MonoBehaviour {
 
+    public event Action<float> OnAttack;
+    
+    [SerializeField]
+    private float radius = 1f; 
     private Collider[] _results = new Collider[10];
     
     [SerializeField]
@@ -20,13 +25,14 @@ public class SimpleMeleeAttack : MonoBehaviour {
     }
 
     protected virtual void DoAttackAction(float damage, DamageType damageType) {
-        int numFound = Physics.OverlapSphereNonAlloc(_attackPoint.position, 1f, _results, _targetLayer);
+        int numFound = Physics.OverlapSphereNonAlloc(_attackPoint.position, radius, _results, _targetLayer);
         for (int i = 0; i < numFound; i++) {
             if (_results[i].TryGetComponent(out HealthUnit healthUnit)) {
                 if (damageType == DamageType.Crit) {
                     Instantiate(_floatingTextPrefab, healthUnit._bodyPoint.position, healthUnit.transform.rotation);
                 }
                 healthUnit.TakeDamage(damage, damageType);
+                OnAttack?.Invoke(damage);
             }
         }
     }

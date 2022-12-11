@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,11 +16,7 @@ public class TraficManager : MonoBehaviour
     {
 
         var car1 = Instantiate(car, traficPoints[start1].position, traficPoints[start1].rotation);
-        car1.GetComponent<CarMovement>().SetPointsAndSpeed(traficPoints[start1], traficPoints[end1], Random.Range(5f, 15f));
-       
-        
-       
-
+        car1.GetComponent<CarMovement>().SetPointsAndSpeed(traficPoints[start1], traficPoints[end1], Random.Range(8f, 13f));
     }
     
     private IEnumerator TraficDelay()
@@ -31,7 +24,7 @@ public class TraficManager : MonoBehaviour
         while (true)
         {
             int point = GetRandomPoint();
-            SpawnTrafic(point, point+4);
+            SpawnTrafic(point, point+2);
             yield return new WaitForSeconds(Random.Range(3, 5));
             
         }
@@ -40,7 +33,7 @@ public class TraficManager : MonoBehaviour
 
     private int GetRandomPoint()
     {
-        return Random.Range(0, 3);
+        return Random.Range(0, 2);
     }
     
 }

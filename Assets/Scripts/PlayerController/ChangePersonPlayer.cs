@@ -29,24 +29,22 @@ public class ChangePersonPlayer : MonoBehaviour {
 
     private PlayerAnimations _playerAnimations;
     private UnitStat _stat;
-    private bool _isAngry;
+    public bool _isAngry;
 
     private ChromaticAberration _chromaticAberration;
     private LensDistortion _lensDistortion;
+    private GameHud _gameHud;
     private bool _chromaticAberrationUp;
 
-    public void Init(PlayerAnimations playerAnimations, UnitStat stat) {
+    public void Init(PlayerAnimations playerAnimations, UnitStat stat, GameHud gameHud) {
         _playerAnimations = playerAnimations;
         _stat = stat;
+        _gameHud = gameHud;
         _chromaticAberration = _angryProfile.postProcessProfile.GetSetting<ChromaticAberration>();
         _lensDistortion = _angryProfile.postProcessProfile.GetSetting<LensDistortion>();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.R)) {
-            ChangeProfile();
-        }
-
         if (_isAngry) {
             HeadBeatEffect();
         }
@@ -72,25 +70,35 @@ public class ChangePersonPlayer : MonoBehaviour {
         }
     }
 
-    private void ChangeProfile() {
-        if (_isAngry) {
-            RenderSettings.skybox = _peaceSkyBox;
-            _peacefullSound.Play();
-            _angrySound.Stop();
-            _isAngry = false;
-            _peacefullProfile.model.SetActive(true);
-            _angryProfile.model.SetActive(false);
-            ChangeProfileStats(_peacefullProfile);
-        } else {
-            RenderSettings.skybox = _anrgySkyBox;
-            _peacefullSound.Stop();
-            _angrySound.Play();
-            _angryFaceAppear.ShowAngryFace();
+    public void ChangeProfileOnDead() {
+        if (!_isAngry) {
+            _playerAnimations.ChangeProfile(_angryProfile.animator);
             _peacefullProfile.model.SetActive(false);
             _angryProfile.model.SetActive(true);
-            ChangeProfileStats(_angryProfile);
-            _isAngry = true;
         }
+    }
+    
+    public void RageProfile() {
+        _gameHud.SetAngryProfile();
+        RenderSettings.skybox = _anrgySkyBox;
+        _peacefullSound.Stop();
+        _angrySound.Play();
+        _angryFaceAppear.ShowAngryFace();
+        _peacefullProfile.model.SetActive(false);
+        _angryProfile.model.SetActive(true);
+        ChangeProfileStats(_angryProfile);
+        _isAngry = true;
+    }
+
+    public void PeaceProfile() {
+        _gameHud.SetPeaceProfile();
+        RenderSettings.skybox = _peaceSkyBox;
+        _peacefullSound.Play();
+        _angrySound.Stop();
+        _isAngry = false;
+        _peacefullProfile.model.SetActive(true);
+        _angryProfile.model.SetActive(false);
+        ChangeProfileStats(_peacefullProfile);
     }
 
     private void ChangeProfileStats(PlayerProfile profile) {

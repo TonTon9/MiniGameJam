@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    private const int Time_before_imageLeft_in_milliseconds = 800;
+    private const float Time_before_imageLeft = 0.8f;
     private const float updateSpeedSec = 0.25f;
     private const float updateLeftSpeedSec = 0.5f;
     
@@ -34,15 +35,10 @@ public class HealthDisplay : MonoBehaviour
         UpdateHealthBur(currentHealth, maxHealth);
     }
 
-    private async void UpdateHealthBur(float currentHealth, float maxHealth) {
-        // _healthBurImage.fillAmount = currentHealth / maxHealth;
-        
-        
+    private void UpdateHealthBur(float currentHealth, float maxHealth) {
         currentValuePct = currentHealth / maxHealth;
         StartCoroutine(ChangeToPct(currentValuePct));
-        await Task.Delay(Time_before_imageLeft_in_milliseconds);
         StartCoroutine(ChangeToPctLeft(currentValuePct));
-
     }
 
     private IEnumerator ChangeToPct(float pct) {
@@ -56,8 +52,9 @@ public class HealthDisplay : MonoBehaviour
         }
         _healthBurImage.fillAmount = pct;
     }
-        
+
     private IEnumerator ChangeToPctLeft(float pct) {
+        yield return new WaitForSeconds(Time_before_imageLeft);
         float preChangedPct = _healthBurImageLeft.fillAmount;
         float elapsed = 0f;
         while (elapsed < updateLeftSpeedSec) {
