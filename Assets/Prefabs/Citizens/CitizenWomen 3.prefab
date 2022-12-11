@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2093524134956069120}
   - component: {fileID: 2720804191992238802}
   m_Layer: 7
-  m_Name: CitizenWomen
+  m_Name: CitizenWomen 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,35 +354,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea01d19246e458896dfafa7db9cb419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _movePoint: []
   _citizenAnimator: {fileID: 603256213599350380}
   _stat:
     _health:
       <type>k__BackingField: 0
       <startValue>k__BackingField: 100
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _damage:
       <type>k__BackingField: 1
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackSpeed:
       <type>k__BackingField: 2
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackRange:
       <type>k__BackingField: 3
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _moveSpeed:
       <type>k__BackingField: 4
       <startValue>k__BackingField: 1.7
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
 --- !u!1 &854840403217576765
 GameObject:
@@ -919,7 +917,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6527713710716910312, guid: 64c3ff928e8db8044bdb21ae9b54a4eb, type: 3}
+  - {fileID: 2100000, guid: c49ab80d0a0900a4381feb11724b34cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -31,21 +31,12 @@ public class UnitStat{
 
     public void SetStatValueByType(StatsType type, float value) {
         var stat = GetStatByType(type);
-        stat.SetValue(value);
+        stat.SetCurrentAndMaxValue(value);
     }
     
     public void IncreaseStatByType(StatsType type, float value) {
         var stat = GetStatByType(type);
-        stat.SetValue(stat.currentValue + value);
-    }
-
-    public void DecreaseStatByType(StatsType type, float value) {
-        var stat = GetStatByType(type);
-        stat.SetValue(stat.currentValue - value);
-    }
-
-    public float GetStatStartValueByType(StatsType type) {
-        return GetStatByType(type).startValue;
+        stat.SetCurrentAndMaxValue(stat.currentValue + value);
     }
 
     public Stat GetStatByType(StatsType type) {

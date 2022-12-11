@@ -40,7 +40,7 @@ public class PolicemanAttack : SimpleMeleeAttack {
     }
 
     private void AttackFromAnimation() {
-        DoAttackAction(_damage.currentValue, DamageType.Normal);
+        DoAttackAction(_damage.currentValue/2, DamageType.Normal);
     }
 
     protected override void DoAttackAction(float damage, DamageType damageType) {
