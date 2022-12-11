@@ -28,7 +28,13 @@ public class MoveFromPointToPoint : IMove {
     }
 
     private bool IsReachTarget() {
+        
+        if (_currentPointToMove == null)
+        {
+            return false;
+        }
         if ((_currentPointToMove.position - _navMeshAgent.transform.position).sqrMagnitude <= 1) {
+            
             return true;
         }
         return false;
