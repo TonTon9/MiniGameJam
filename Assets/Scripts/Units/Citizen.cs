@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(HealthUnit))]
 public abstract class Citizen : MonoBehaviour{
     [SerializeField]
-    protected Transform[] _movePoint;
+    protected List<Transform> _movePoint;
     
     [SerializeField]
     protected Animator _citizenAnimator;
@@ -42,5 +43,10 @@ public abstract class Citizen : MonoBehaviour{
         }
         _movement.Stop();
         Destroy(gameObject, 5f);
+    }
+
+    public void SetMovePoints(List<Transform> MovePoints)
+    {
+        _movePoint = MovePoints;
     }
 }
