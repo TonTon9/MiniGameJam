@@ -3,7 +3,7 @@
 public class PlayerAnimations {
 
     private Animator _animator;
-    
+
     public PlayerAnimations(Animator animator) {
         _animator = animator;
     }
@@ -25,5 +25,6 @@ public class PlayerAnimations {
 
     public void PlayDeadAnimation() {
         _animator.CrossFade("Die", 0.1f);
+        _animator.CrossFade("Die", 0.1f, 1);
     }
 }

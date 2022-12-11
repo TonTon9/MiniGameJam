@@ -19,12 +19,12 @@ public class HealthUnit : MonoBehaviour
     private Stat _health;
 
     private GameObject _bloodGameObject;
-    
-    
-  
-    
+    private float healPercent = 0.2f;
+
+
     public void Init(Stat health) {
         _health = health;
+        _health.OnChangeValue += ChangeHealth;
         _healthDisplay.Init(this, _health.currentValue, _health.maxValue);
     }
     
@@ -35,10 +35,17 @@ public class HealthUnit : MonoBehaviour
             _health.SetValue(0);
             OnDie?.Invoke(damageType);
         }
-
         _bloodGameObject = Instantiate(_bloodVfx, _bodyPoint.position, _bodyPoint.rotation);
         Destroy(_bloodGameObject, 1f);
-        OnHealthChange?.Invoke(_health.currentValue, _health.maxValue);
         
+    }
+
+    private void ChangeHealth(float health) {
+        OnHealthChange?.Invoke(_health.currentValue, _health.maxValue);
+    } 
+
+    public void HealByAttack(float damage) {
+        float healValue = damage * healPercent;
+        _health.SetValue(_health.currentValue + healValue);
     }
 }

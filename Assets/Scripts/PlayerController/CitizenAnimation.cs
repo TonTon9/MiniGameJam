@@ -8,6 +8,7 @@ public class CitizenAnimation {
     }
 
     public void SetIsAttackingBool(bool isAttaking) {
+        //_animator.SetFloat("AttackInt", Random.Range(1, 3));
         _animator.SetBool("IsAttaking", isAttaking);    
     }
     
@@ -28,6 +29,7 @@ public class CitizenAnimation {
     }
 
     public bool GetAttackBool() {
+        _animator.SetFloat("AttackInt", Random.Range(1, 3));
         return _animator.GetBool("IsAttaking");
     }
 }

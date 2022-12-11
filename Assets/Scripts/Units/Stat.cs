@@ -25,6 +25,11 @@ public class Stat {
         OnChangeValue?.Invoke(currentValue);
     }
 
+    public void SetCurrentAndMaxValue(float value) {
+        maxValue = value;
+        SetValue(value);
+    }
+
     public Stat InitStat() {
         currentValue = startValue;
         maxValue = startValue;

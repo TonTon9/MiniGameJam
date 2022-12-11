@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameHud : MonoBehaviour
 {
+    private const int Time_before_imageLeft_in_milliseconds = 800;
     private const float updateSpeedSec = 0.25f;
     private const float updateLeftSpeedSec = 0.5f;
     
@@ -16,34 +18,60 @@ public class GameHud : MonoBehaviour
     [SerializeField] private TextMeshProUGUI killResultText;
     [SerializeField] private Image spritePortriet;
     [SerializeField] private Image healthBar;
+    [SerializeField] private Image healthBarLeft;
     [SerializeField] private Image staminaBar;
     [SerializeField] private Sprite isGoodBoySprite;
     [SerializeField] private Sprite isEvilBoySprite;
     [SerializeField] private Image ragemodeBar;
     [Header("Other Settings")]
     [SerializeField] private TextMeshProUGUI amountKills;
+    
+    [SerializeField] private TextMeshProUGUI rageTimeLeft;
 
     [Header("DeadUI")]
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject gamePanelUI;
+
+    [SerializeField]
+    private TextMeshProUGUI _RELOADtIME;
     
     private static float currentStamina;
     private int currentKills;
     private float maxStamina = 100;
     private bool isEvil;
     private float currentValuePct;
-
+    
     private void Awake() {
-        Citizen.OnDie += KillCitizen;
+        SimpleCitizen.OnDie += KillCitizen;
+        Policeman.OnDie += KillCitizen;
     }
 
-    public void UpdateHealth(float currentHealth ,float maxHealth)
+    public void SetRageTimeLeft(float time) {
+        if (time <= 0) {
+            if (rageTimeLeft.gameObject.activeSelf) {
+                rageTimeLeft.gameObject.SetActive(false);    
+            }
+            
+            return;
+        } else {
+            if(!rageTimeLeft.gameObject.activeSelf)
+                rageTimeLeft.gameObject.SetActive(true);
+        }
+        rageTimeLeft.text = Math.Round(time).ToString();
+    }
+
+    public async void UpdateHealth(float currentHealth ,float maxHealth)
     {
         currentValuePct = currentHealth / maxHealth;
         healthText.text = $"{currentHealth.ToString()}%";
         StartCoroutine(ChangeToPct(currentValuePct));
-        // healthBar.fillAmount = currentHealth / maxHealth;
-        // healthText.text = "" + currentHealth + "%";
+        await Task.Delay(Time_before_imageLeft_in_milliseconds);
+        StartCoroutine(ChangeToPctLeft(currentValuePct));
+    }
+
+    public void UpdateReloadTimeLeft(float currentTime ,float maxTime) {
+        _RELOADtIME.text = Math.Round(currentTime).ToString();
+        //staminaBar.fillAmount = currentTime / maxTime;
     }
     
     private IEnumerator ChangeToPct(float pct) {
@@ -58,6 +86,20 @@ public class GameHud : MonoBehaviour
             yield return null;
         }
         healthBar.fillAmount = pct;
+    }
+    
+    private IEnumerator ChangeToPctLeft(float pct) {
+        float preChangedPct = healthBarLeft.fillAmount;
+        float elapsed = 0f;
+        while (elapsed < updateLeftSpeedSec) {
+            
+            elapsed += Time.deltaTime;
+            healthBarLeft.fillAmount = Mathf.Lerp(preChangedPct, pct, elapsed / updateLeftSpeedSec);
+            
+            //_healthBurImage.color = _colorGradient.Evaluate(_healthBurImage.fillAmount);
+            yield return null;
+        }
+        healthBarLeft.fillAmount = pct;
     }
     
     
@@ -96,27 +138,24 @@ public class GameHud : MonoBehaviour
     {
         currentStamina -= _stamina;
     }
-    public void SwapPortrait()
-    {
-        if (!isEvil)
-        {
-            spritePortriet.sprite = isEvilBoySprite;
-            isEvil = true;
-        }
-        else
-        {
-            spritePortriet.sprite = isGoodBoySprite;
-            isEvil = false;
-        }
+
+    public void SetAngryProfile() {
+        spritePortriet.sprite = isEvilBoySprite;
+    }
+    
+    public void SetPeaceProfile() {
+        spritePortriet.sprite = isGoodBoySprite;
     }
 
     public void ShowDeadScreen() {
         gamePanelUI.SetActive(false);
         deadPanel.SetActive(true);
-        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
     
     private void OnDestroy() {
-        Citizen.OnDie -= KillCitizen;
+        SimpleCitizen.OnDie -= KillCitizen;
+        Policeman.OnDie -= KillCitizen;
     }
 }

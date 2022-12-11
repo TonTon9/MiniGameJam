@@ -20,19 +20,23 @@ public class PolicemanMove : IMove {
     }
 
     public void Move() {
-        if(_citizenAnimation.GetAttackBool()) return;
-
-        if ((_playerTransform.position - _navMeshAgent.transform.position).sqrMagnitude > _attackRange.currentValue) {
-            _navMeshAgent.SetDestination(_playerTransform.transform.position);
-            _citizenAnimation.SetIsMovingBool(true);
+        if (_citizenAnimation.GetAttackBool()) {
+            Stop();
+            _navMeshAgent.transform.LookAt(new Vector3(_playerTransform.position.x, _navMeshAgent.transform.position.y, _playerTransform.position.z));
         } else {
-            _citizenAnimation.SetIsMovingBool(false);
+            _navMeshAgent.isStopped = false;
+            if ((_playerTransform.position - _navMeshAgent.transform.position).sqrMagnitude > _attackRange.currentValue) {
+                _navMeshAgent.SetDestination(_playerTransform.transform.position);
+                _citizenAnimation.SetIsMovingBool(true);
+            } else {
+                _citizenAnimation.SetIsMovingBool(false);
+            }
         }
-        
     }
     
     public void Stop() {
-        
+        _navMeshAgent.ResetPath();
+        _navMeshAgent.isStopped = true;
     }
 
     public float GetSpeed() {

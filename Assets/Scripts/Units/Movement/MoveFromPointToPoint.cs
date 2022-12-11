@@ -5,14 +5,21 @@ using UnityEngine.AI;
 public class MoveFromPointToPoint : IMove {
     private List<Transform> _pointsToMove;
     private NavMeshAgent _navMeshAgent;
-    private Transform _currentPointToMove; 
+    private Transform _currentPointToMove;
+    private Stat _speed;
     private bool _isStopped = false;
 
     public MoveFromPointToPoint(NavMeshAgent navMeshAgent, List<Transform> pointsToMove, Stat speed) {
         _navMeshAgent = navMeshAgent;
         _pointsToMove = pointsToMove;
-        _navMeshAgent.speed = speed.currentValue;
+        _speed = speed;
+        _navMeshAgent.speed = _speed.currentValue;
+        _speed.OnChangeValue += UpdateSpeed;
         ChooseNewMovePoint();
+    }
+
+    private void UpdateSpeed(float currentSpeed) {
+        _navMeshAgent.speed = _speed.currentValue;
     }
 
     public void Move() {

@@ -3177,6 +3177,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480783310046691455}
     m_Modifications:
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1213722
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.z
+      value: 1.1645775
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.x
+      value: -0.048143387
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.z
+      value: -0.042654037
+      objectReference: {fileID: 0}
     - target: {fileID: 8495513324701328381, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
       propertyPath: m_Name
       value: pine_tree (3)
@@ -11738,6 +11754,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480783310046691455}
     m_Modifications:
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2116013
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.z
+      value: 1.3411274
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.x
+      value: -0.04076004
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0357275
+      objectReference: {fileID: 0}
     - target: {fileID: 8495513324701328381, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
       propertyPath: m_Name
       value: pine_tree (6)
@@ -13538,6 +13570,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480783310046691455}
     m_Modifications:
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3105674
+      objectReference: {fileID: 0}
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Size.y
+      value: 7.396381
+      objectReference: {fileID: 0}
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5281417
+      objectReference: {fileID: 0}
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Center.x
+      value: -0.04720368
+      objectReference: {fileID: 0}
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Center.y
+      value: 3.6974654
+      objectReference: {fileID: 0}
+    - target: {fileID: -8737156630487404266, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
+      propertyPath: m_Center.z
+      value: -0.18081746
+      objectReference: {fileID: 0}
     - target: {fileID: 4911498141463945729, guid: 3dd5ac78e5f8a442c94ffa793d1b7ff1, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -19687,6 +19743,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3480783310046691455}
     m_Modifications:
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0963058
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Size.z
+      value: 1.2865124
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.x
+      value: 0.016700745
+      objectReference: {fileID: 0}
+    - target: {fileID: -3003663946272229124, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
+      propertyPath: m_Center.z
+      value: 0.12094593
+      objectReference: {fileID: 0}
     - target: {fileID: 8495513324701328381, guid: 6cb72a3a9142647be8a73b9b0658c5b7, type: 3}
       propertyPath: m_Name
       value: pine_tree (5)

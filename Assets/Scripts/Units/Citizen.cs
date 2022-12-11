@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(HealthUnit))]
 public abstract class Citizen : MonoBehaviour {
-    public static event Action OnDie;
-    
+
     [SerializeField]
     protected List<Transform> _movePoint;
     
@@ -20,12 +19,15 @@ public abstract class Citizen : MonoBehaviour {
 
     protected NavMeshAgent _agent;
     protected CitizenAnimation _citizenAnimation;
+    private BoxCollider _collider;
     protected IMove _movement;
 
-    protected virtual void Awake() {
+    public void Init(List<Transform> movePoints) {
+        _movePoint = movePoints;
         _stat.Init();
         _healthUnit = GetComponent<HealthUnit>();
         _agent = GetComponent<NavMeshAgent>();
+        _collider = GetComponent<BoxCollider>();
         _citizenAnimation = new CitizenAnimation(_citizenAnimator);
         InitBehaviours();
         _healthUnit.Init(_stat.GetStatByType(StatsType.Health));
@@ -34,12 +36,15 @@ public abstract class Citizen : MonoBehaviour {
 
     public abstract void InitBehaviours();
 
+    public abstract void OnDieAction();
+
     protected virtual void Update() {
         _movement.Move();
     }
 
     private void Die(DamageType damageType) {
-        OnDie?.Invoke();
+        OnDieAction();
+        _collider.enabled = false;
         if (damageType == DamageType.Crit) {
             _citizenAnimation.PlayCoolDeadAnimation(); 
         } else {
@@ -49,8 +54,4 @@ public abstract class Citizen : MonoBehaviour {
         Destroy(gameObject, 5f);
     }
 
-    public void SetMovePoints(List<Transform> MovePoints)
-    {
-        _movePoint = MovePoints;
-    }
 }

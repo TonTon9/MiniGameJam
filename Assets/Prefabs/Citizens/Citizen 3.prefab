@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 8795014762723405760}
   - component: {fileID: 3446035144348088472}
   m_Layer: 7
-  m_Name: Citizen
+  m_Name: Citizen 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 3446035144348088474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.44, y: -0.932, z: -9.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1414, y: 1.1414, z: 1.1414}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 906530561583109379}
@@ -976,22 +976,27 @@ MonoBehaviour:
     _health:
       <type>k__BackingField: 0
       <startValue>k__BackingField: 100
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _damage:
       <type>k__BackingField: 1
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackSpeed:
       <type>k__BackingField: 2
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackRange:
       <type>k__BackingField: 3
       <startValue>k__BackingField: 0
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _moveSpeed:
       <type>k__BackingField: 4
       <startValue>k__BackingField: 1.7
+      <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
 --- !u!1 &3457271592973870857
 GameObject:
@@ -1376,7 +1381,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7198559261415225722, guid: 1d78607769d52804ebcf22480781bd15, type: 3}
+  - {fileID: 2100000, guid: 18a4107c039c9ab418da3596d0c05891, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
