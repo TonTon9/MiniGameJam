@@ -7,7 +7,11 @@ public class CitizenAnimation {
         _animator = animator;
     }
 
-    // public void SetWalkSpeed(float verticalSpeed, float horizontalSpeed) {
-    //     _animator.SetFloat("Speed", verticalSpeed * _speedParameterMultiplier);
-    // }
+    public void PlayDeadAnimation() {
+        _animator.CrossFade("Die", 0.1f);
+    }
+
+    public void PlayCoolDeadAnimation() {
+        _animator.CrossFade("CoolDie", 0.1f);
+    }
 }

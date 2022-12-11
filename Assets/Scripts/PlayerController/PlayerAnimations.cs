@@ -20,6 +20,10 @@ public class PlayerAnimations {
         _animator.CrossFade("Attack", 0.2f);
     }
     public void PlayAttackAnimation2() {
-        _animator.CrossFade("Attack2", 0.2f);
+        _animator.CrossFade("Strong attack", 0.2f);
+    }
+
+    public void PlayDeadAnimation() {
+        _animator.CrossFade("Die", 0.1f);
     }
 }

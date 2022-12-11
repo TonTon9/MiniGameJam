@@ -15,6 +15,18 @@ public class ChangePersonPlayer : MonoBehaviour {
     [SerializeField]
     private AngryFaceAppear _angryFaceAppear;
 
+    [SerializeField]
+    private AudioSource _angrySound;
+    
+    [SerializeField]
+    private AudioSource _peacefullSound;
+
+    [SerializeField]
+    private Material _peaceSkyBox;
+    
+    [SerializeField]
+    private Material _anrgySkyBox;
+
     private PlayerAnimations _playerAnimations;
     private UnitStat _stat;
     private bool _isAngry;
@@ -62,11 +74,17 @@ public class ChangePersonPlayer : MonoBehaviour {
 
     private void ChangeProfile() {
         if (_isAngry) {
+            RenderSettings.skybox = _peaceSkyBox;
+            _peacefullSound.Play();
+            _angrySound.Stop();
             _isAngry = false;
             _peacefullProfile.model.SetActive(true);
             _angryProfile.model.SetActive(false);
             ChangeProfileStats(_peacefullProfile);
         } else {
+            RenderSettings.skybox = _anrgySkyBox;
+            _peacefullSound.Stop();
+            _angrySound.Play();
             _angryFaceAppear.ShowAngryFace();
             _peacefullProfile.model.SetActive(false);
             _angryProfile.model.SetActive(true);

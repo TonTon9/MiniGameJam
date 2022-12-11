@@ -5,6 +5,7 @@ public class MoveFromPointToPoint : IMove {
     private Transform[] _pointsToMove;
     private NavMeshAgent _navMeshAgent;
     private Transform _currentPointToMove;
+    private bool _isStopped = false;
 
     public MoveFromPointToPoint(NavMeshAgent navMeshAgent, Transform[] pointsToMove, Stat speed) {
         _navMeshAgent = navMeshAgent;
@@ -14,6 +15,7 @@ public class MoveFromPointToPoint : IMove {
     }
 
     public void Move() {
+        if(_isStopped) return;
         if(IsReachTarget()) {
             ChooseNewMovePoint();
         }
@@ -29,6 +31,11 @@ public class MoveFromPointToPoint : IMove {
             return true;
         }
         return false;
+    }
+
+    public void Stop() {
+        _isStopped = true;
+        _navMeshAgent.ResetPath();
     }
     
     public float GetSpeed() {
