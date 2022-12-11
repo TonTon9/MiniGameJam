@@ -1,33 +1,64 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(ChangePersonPlayer))]
 public class Player : MonoBehaviour {
-
-    [SerializeField]
-    private float _speed;
 
     [SerializeField]
     private float _mouseSens;
 
     [SerializeField]
     private Animator _playerAnimator;
+
+    [SerializeField]
+    private UnitStat _stat;
+
+    [SerializeField]
+    private HealthUnit _healthUnit;
+    
+    [SerializeField]
+    private Transform _cameraHolderTransform;
+
+    [SerializeField]
+    private SimpleMeleeAttack _attack;
     
     private CharacterController _characterController;
     private FirstPersonCamera _firstPersonCamera;
     private PlayerAnimations _playerAnimations;
-    
+    private ChangePersonPlayer _changePersonPlayer;
+
     private IMove _movement;
 
     private void Awake() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        _stat.Init();
         _characterController = GetComponent<CharacterController>();
-        _movement = new PlayerMovement(_characterController, _speed);
+        _changePersonPlayer = GetComponent<ChangePersonPlayer>();
+        _attack.SetDamageStat(_stat.GetStatByType(StatsType.Damage));
+        _movement = new PlayerMovement(_characterController, _stat.GetStatByType(StatsType.MoveSpeed));
         _playerAnimations = new PlayerAnimations(_playerAnimator);
-        _firstPersonCamera = new FirstPersonCamera(Camera.main.transform, transform, _mouseSens);
+        _firstPersonCamera = new FirstPersonCamera(Camera.main.transform, transform,_cameraHolderTransform, _mouseSens);
+        _healthUnit.Init(_stat.GetStatByType(StatsType.Health));
+        _healthUnit.OnDie += Die;
+        _changePersonPlayer.Init(_playerAnimations,_stat);
     }
 
     private void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            _playerAnimations.PlayAttackAnimation();
+        }
+        if (Input.GetMouseButtonDown(1)) {
+            _playerAnimations.PlayAttackAnimation2();
+        }
+
         _firstPersonCamera.RotateCamera();
         _movement.Move();
-        _playerAnimations.SetWalkSpeed(_movement.GetVerticalSpeed(), _movement.GetHorizontalSpeed());
+        _playerAnimations.SetWalkSpeed(_movement.GetSpeed());
+    }
+
+    private void Die(DamageType damageType) {
+        _playerAnimations.PlayDeadAnimation();
+        _movement.Stop();
     }
 }

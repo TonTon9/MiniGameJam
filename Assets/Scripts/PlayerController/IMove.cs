@@ -1,6 +1,7 @@
 ﻿public interface IMove {
     void Move();
 
-    float GetVerticalSpeed();
-    float GetHorizontalSpeed();
+    void Stop();
+
+    float GetSpeed();
 }

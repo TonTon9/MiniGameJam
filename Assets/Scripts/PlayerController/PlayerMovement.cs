@@ -10,31 +10,50 @@ public class PlayerMovement : IMove {
     
     private float _horizontalInput;
     private float _verticalInput;
+    
+    private float _gravityForce;
+    private bool _isStopped;
 
-    public PlayerMovement(CharacterController characterController, float speed) {
+    public PlayerMovement(CharacterController characterController, Stat speedStat) {
         _charController = characterController;
-        _speed = speed;
+        _speed = speedStat.currentValue;
+        speedStat.OnChangeValue += ChangeSpeed;
     }
     
     public void Move() {
+        if(_isStopped) return;
+        UseGravity();
         MoveCharacter();
     }
 
     private void MoveCharacter() {
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        _directionX = _horizontalInput * _speed * Time.deltaTime;
-        _directionZ = _verticalInput * _speed * Time.deltaTime;
+        _directionX = _horizontalInput * _speed;
+        _directionZ = _verticalInput * _speed;
         _totalDirection = new Vector3(_directionX, 0, _directionZ);
         _totalDirection = _charController.transform.TransformDirection(_totalDirection);
-        _charController.Move(_totalDirection);
+        _totalDirection.y = _gravityForce;
+        _charController.Move(_totalDirection * Time.deltaTime);
     }
 
-    public float GetVerticalSpeed() {
-        return _verticalInput;
+    private void ChangeSpeed(float speed) {
+        _speed = speed;
     }
 
-    public float GetHorizontalSpeed() {
+    private void UseGravity() {
+        if (!_charController.isGrounded) _gravityForce -= 40f * Time.deltaTime;
+        else _gravityForce = -0.4f;
+    }
+    
+    public void Stop() {
+        _isStopped = true;
+    }
+
+    public float GetSpeed() {
+        if (Mathf.Abs(_verticalInput) >= Mathf.Abs(_horizontalInput)) {
+            return _verticalInput;    
+        }
         return _horizontalInput;
     }
 }
