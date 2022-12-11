@@ -19,7 +19,7 @@ public class SimpleMeleeAttack : MonoBehaviour {
         _damage = damageStat;
     }
 
-    private void Attack(float damage, DamageType damageType) {
+    protected virtual void DoAttackAction(float damage, DamageType damageType) {
         int numFound = Physics.OverlapSphereNonAlloc(_attackPoint.position, 1f, _results, _targetLayer);
         for (int i = 0; i < numFound; i++) {
             if (_results[i].TryGetComponent(out HealthUnit healthUnit)) {
@@ -32,10 +32,10 @@ public class SimpleMeleeAttack : MonoBehaviour {
     }
 
     public void StrongAttack() {
-        Attack(_damage.currentValue * 3f, DamageType.Crit);
+        DoAttackAction(_damage.currentValue * 3f, DamageType.Crit);
     }
     
     public void SimpleAttack() {
-        Attack(_damage.currentValue, DamageType.Normal);
+        DoAttackAction(_damage.currentValue, DamageType.Normal);
     }
 }

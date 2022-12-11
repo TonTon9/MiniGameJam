@@ -2,33 +2,35 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(HealthUnit))]
-public class Citizen : MonoBehaviour {
+public abstract class Citizen : MonoBehaviour{
     [SerializeField]
-    private Transform[] _movePoint;
+    protected Transform[] _movePoint;
     
     [SerializeField]
-    private Animator _citizenAnimator;
+    protected Animator _citizenAnimator;
 
     [SerializeField]
-    private UnitStat _stat;
+    protected UnitStat _stat;
 
-    private HealthUnit _healthUnit;
+    protected HealthUnit _healthUnit;
 
-    private NavMeshAgent _agent;
-    private CitizenAnimation _citizenAnimation;
-    private IMove _movement;
+    protected NavMeshAgent _agent;
+    protected CitizenAnimation _citizenAnimation;
+    protected IMove _movement;
 
-    private void Awake() {
+    protected virtual void Awake() {
         _stat.Init();
         _healthUnit = GetComponent<HealthUnit>();
         _agent = GetComponent<NavMeshAgent>();
-        _movement = new MoveFromPointToPoint(_agent, _movePoint, _stat.GetStatByType(StatsType.MoveSpeed));
         _citizenAnimation = new CitizenAnimation(_citizenAnimator);
+        InitBehaviours();
         _healthUnit.Init(_stat.GetStatByType(StatsType.Health));
         _healthUnit.OnDie += Die;
     }
 
-    private void Update() {
+    public abstract void InitBehaviours();
+
+    protected virtual void Update() {
         _movement.Move();
     }
 
