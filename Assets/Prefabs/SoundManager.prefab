@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2556384102287685010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2556384102287685008}
+  - component: {fileID: 2556384102287685009}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2556384102287685008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556384102287685010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2556384102287685009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556384102287685010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850a1cbab4abe9846833ec0002a1a0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - _name: Explosion
+    clip: {fileID: 8300000, guid: 24c7b5f4bd7d6f6408a5c54493346f03, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: MeleeHit
+    clip: {fileID: 8300000, guid: c51002efa764a944d94aef91081c348f, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: GetDamage1
+    clip: {fileID: 8300000, guid: d474642ae86bc52449e121d1cef049cb, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: GetDamage2
+    clip: {fileID: 8300000, guid: 64cafe0547ebb674e8f7a094e60bebe9, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: RageStage
+    clip: {fileID: 8300000, guid: e071e196c2ecb1b4ea5049ddaf935152, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  walkSounds:
+  - _name: Walk1
+    clip: {fileID: 8300000, guid: b993df4a93c1d304ab19d8b2eb88c9a5, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk2
+    clip: {fileID: 8300000, guid: 5c9bdbce37b06a24fa6ea793bcfd1907, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk3
+    clip: {fileID: 8300000, guid: 0909de896e9029541b92ae05fe15e4b6, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk4
+    clip: {fileID: 8300000, guid: 6ad0cf00f050bee41a2dee098475dc78, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk5
+    clip: {fileID: 8300000, guid: 7ca5a9710db4327439c9f8cb8204615e, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk6
+    clip: {fileID: 8300000, guid: 14ae706fef2303e4cb71112dbd5d250b, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk7
+    clip: {fileID: 8300000, guid: b995bc1775ea83b4b8f861763e9a1424, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Walk8
+    clip: {fileID: 8300000, guid: d15f7338d693f0343843a6b9096d27f6, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  runSounds:
+  - _name: Run1
+    clip: {fileID: 8300000, guid: ffa5441258224694690169f4bd95b969, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Run2
+    clip: {fileID: 8300000, guid: 5a5fe2a543e35ef44980fcf5ac79551a, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Run3
+    clip: {fileID: 8300000, guid: 062aac8f0463d7945a5a16732efbea51, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Run4
+    clip: {fileID: 8300000, guid: e331a9e83f5b77e49bd9efba1b2c2fd9, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Run5
+    clip: {fileID: 8300000, guid: 8c2c6c300bd8fc441878f426377bec64, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  - _name: Run6
+    clip: {fileID: 8300000, guid: f8e559768bed7ed4680ab0449da7ec3a, type: 3}
+    volume: 1
+    pitch: 1
+    sourse: {fileID: 0}
+    mixerGroupType: 1
+  _masterMixer: {fileID: 24300002, guid: 8131382f6f371994488570ddad7c364f, type: 2}
+  _soundsMixer: {fileID: 7051480411435103463, guid: 8131382f6f371994488570ddad7c364f, type: 2}
+  _musicMixer: {fileID: -6065015650359237634, guid: 8131382f6f371994488570ddad7c364f, type: 2}
