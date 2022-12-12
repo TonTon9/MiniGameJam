@@ -40,7 +40,7 @@ public class MoveFromPointToPoint : IMove {
         {
             return false;
         }
-        if ((_currentPointToMove.position - _navMeshAgent.transform.position).sqrMagnitude <= 1) {
+        if ((_currentPointToMove.position - _navMeshAgent.transform.position).sqrMagnitude <= 4) {
             
             return true;
         }
