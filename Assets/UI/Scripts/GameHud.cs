@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -31,11 +32,17 @@ public class GameHud : MonoBehaviour
     [SerializeField] private GameObject deadPanel;
     [SerializeField] private GameObject gamePanelUI;
 
-    [FormerlySerializedAs("_RELOADtIME")] [SerializeField]
+    [SerializeField]
     private TextMeshProUGUI _reloadTime;
 
     [SerializeField]
     private Image _timeToRageFormReady;
+
+    [SerializeField]
+    private TextMeshProUGUI _complexityText;
+    
+    [SerializeField]
+    private TextMeshProUGUI _complexityIncreasedText;
     
     private static float currentStamina;
     private int currentKills;
@@ -61,8 +68,14 @@ public class GameHud : MonoBehaviour
         }
         rageTimeLeft.text = Math.Round(time).ToString();
     }
-    
-    
+
+    public void IncreaseComplexity(int complexity) {
+        _complexityText.text = $"Complexity lvl: {complexity}";
+        _complexityIncreasedText.color = Color.white;
+        _complexityIncreasedText.transform.localScale = Vector3.zero;
+        _complexityIncreasedText.transform.DOScale(1.5f, 2.5f);
+        _complexityIncreasedText.DOFade(0, 2.5f);
+    }
 
     public async void UpdateHealth(float currentHealth ,float maxHealth)
     {

@@ -301,7 +301,7 @@ MonoBehaviour:
       <currentValue>k__BackingField: 0
     _damage:
       <type>k__BackingField: 1
-      <startValue>k__BackingField: 10
+      <startValue>k__BackingField: 7
       <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
     _attackSpeed:
@@ -316,7 +316,7 @@ MonoBehaviour:
       <currentValue>k__BackingField: 0
     _moveSpeed:
       <type>k__BackingField: 4
-      <startValue>k__BackingField: 1.7
+      <startValue>k__BackingField: 3
       <maxValue>k__BackingField: 0
       <currentValue>k__BackingField: 0
   _policemanAttack: {fileID: 3111518111904153302}
